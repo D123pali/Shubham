@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="forgotP1.jsp" method="post" >
+<table align="center">
+            <tr>
+            <th colspan="2" style="padding:20px">Changed password</th>
+            </tr>
+            <tr>
+                <td>User Id:</td><td><input type="text" name="ruser"></td>
+            </tr>
+            <tr>
+             <td>Password:</td><td><input type="password" name="renterPass" required onkeyup="validateLastName(this)""></td>
+            </tr>
+            <tr>
+             <td>Confirm password:</td><td><input type="password" name="rconformPass" required onkeyup="validateLastName(this)""></td>
+            </tr>
+            <tr>
+                <td></td><td colspan="2" style="padding:20px"><input type="reset" value="clean">&#160<input type="submit" value="changed"></td>
+            </tr>
+</table>
+</form>
+</body>
+<script>
+function validatePassword(obj) {
+    var password = obj.value;
+    var hasUpperCase = /[A-Z]/.test(password);
+    var hasLowerCase = /[a-z]/.test(password);
+    var hasNumbers = /\d/.test(password);
+    var hasSpecialChars = /[\W_]/.test(password);
+
+    if (password.length < 8 || !hasUpperCase || !hasLowerCase || !hasNumbers || !hasSpecialChars) {
+        document.getElementById("passwordRes").style.color = "red";
+        document.getElementById("passwordRes").innerHTML = "Please enter a password that is at least 8 characters long and includes uppercase and lowercase letters, numbers, and special characters.";
+    } else {
+        document.getElementById("passwordRes").innerHTML = "";
+    }
+}
+</script>
+</html>

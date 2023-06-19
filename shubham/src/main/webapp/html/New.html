@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New User Creation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F2F2F2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background-color: #FFF;
+            padding: 20px;
+            margin: 0 auto;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Create New User</h1>
+    <form action="" method="">
+        <label for="username">First Name:</label>
+        <input type="text" id="username" name="firstName" required onkeyup="validateFirstName(this)">
+        <div>
+            <h3 id="res1"></h3>
+        </div>
+        <label for="username">Last Name:</label>
+        <input type="text" id="username" name="lastName" required onkeyup="validateLastName(this)"">
+        <div>
+            <h3 id="res2"></h3>
+        </div>
+        <label for="role">Gender:</label>
+        <select id="role" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="others">others</option>
+        </select>
+
+        <label for="email">Email:</label>
+
+        <input type="email" id="email" name="email" required onkeyup="validateEmail(this)">
+        <div>
+            <h3 id="emailRes"></h3>
+        </div>
+        <label for="password">Password:</label> <input type="password" id="password" name="password" required onkeyup="validatePassword(this)">
+        <div>
+            <h3 id="passwordRes"></h3>
+        </div>
+        <label for="userName">Phone No:</label>
+        <input type="text" id=username name="phone" required onkeyup="validatePhone(this)">
+        <div>
+            <h3 id="res3"></h3>
+        </div>
+        <button type="submit">Create User</button>
+    </form>
+</body>
+<script>
+    function validateFirstName(obj) {
+        var letters = /^[A-Za-z]+$/;
+        if (!obj.value.match(letters)) {
+            document.getElementById("res1").style.color = "red";
+            document.getElementById("res1").innerHTML = "Please enter alphabets only";
+        } else {
+            document.getElementById("res1").innerHTML = "";
+        }
+    }
+    function validateLastName(obj) {
+        var letters = /^[A-Za-z]+$/;
+        if (!obj.value.match(letters)) {
+            document.getElementById("res2").style.color = "red";
+            document.getElementById("res2").innerHTML = "Please enter alphabets only";
+        } else {
+            document.getElementById("res2").innerHTML = "";
+        }
+    }
+
+    function validatePhone(obj) {
+        if (obj.value.length> 10 || obj.value.length< 10  ) {
+            document.getElementById("res3").style.color = "red";
+            document.getElementById("res3").innerHTML = "Please enter 10 digit number only";
+        } else {
+            document.getElementById("res3").innerHTML = "";
+        }
+    }
+
+
+    // @*To check if an email contains the "@" symbol or not, you can use the indexOf() function in JavaScript.
+    // The indexOf() function returns the index of the first occurrence of a specified value in a string, or - 1 if the value is not found.*@
+
+    function validateEmail(obj) {
+        if (obj.value.indexOf("@") == -1) {
+            document.getElementById("emailRes").style.color = "red";
+            document.getElementById("emailRes").innerHTML = "Please enter a valid email address";
+        }
+        else {
+            document.getElementById("emailRes").innerHTML = "";
+        }
+    }
+    function validatePassword(obj) {
+        var password = obj.value;
+        var hasUpperCase = /[A-Z]/.test(password);
+        var hasLowerCase = /[a-z]/.test(password);
+        var hasNumbers = /\d/.test(password);
+        var hasSpecialChars = /[\W_]/.test(password);
+
+        if (password.length < 8 || !hasUpperCase || !hasLowerCase || !hasNumbers || !hasSpecialChars) {
+            document.getElementById("passwordRes").style.color = "red";
+            document.getElementById("passwordRes").innerHTML = "Please enter a password that is at least 8 characters long and includes uppercase and lowercase letters, numbers, and special characters.";
+        } else {
+            document.getElementById("passwordRes").innerHTML = "";
+        }
+    }
+
+</script>
+
+</html>
